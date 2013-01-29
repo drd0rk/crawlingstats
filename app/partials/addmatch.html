@@ -1,0 +1,26 @@
+<div>
+  <h3>Spiel eintragen</h3>
+  <div class="alert alert-block alert-success" ng-show="showSuccess">Spiel eingetragen.</div>
+  <form name="matchForm">
+    <fieldset>
+      <label>Datum</label>
+      <input type="datetime" ng-model="newMatch.date" datetime/>
+      <label>Team 1</label>
+      <select class="input-large" ng-model="newMatch.team1.defensive" ng-options="user.name for user in users" required>
+      </select>
+      <select class="input-large" ng-model="newMatch.team1.offensive" ng-options="user.name for user in users" required>
+      </select>
+      <label>Team 2</label>
+      <select class="input-large" ng-model="newMatch.team2.defensive" ng-options="user.name for user in users" required>
+      </select>
+      <select class="input-large" ng-model="newMatch.team2.offensive" ng-options="user.name for user in users" required>
+      </select>
+      <label>Ergebnis</label>
+      Team 1 
+      <input type="number" min="0" max="5" class="input-mini" ng-model="newMatch.result.team1" required /> : 
+      <input type="number" min="0" max="5" class="input-mini" ng-model="newMatch.result.team2" required />
+      Team 2<br/>
+      <button type="submit" class="btn btn-primary" ng-click="addMatch(newMatch)" ng-disabled="matchForm.$invalid">Spiel eintragen</button>
+    </fieldset>
+  </form>
+</div>

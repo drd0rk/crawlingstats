@@ -1,0 +1,11 @@
+body {
+  padding-top: 60px;
+}
+
+[ng-click] {
+  cursor: pointer;
+}
+
+input {
+  height: auto!important;
+}

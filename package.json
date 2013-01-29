@@ -1,4 +1,11 @@
 {
   "name": "crawlingstats",
-  "version": "0.0.1"
+  "version": "0.0.1",
+  "dependencies": {
+    "basic-logger": "0.4.4",
+    "express": "3.0.6",
+    "mongodb": "1.2.9",
+    "async": "0.1.x",
+    "xtend": "1.0.3"
+  }
 }
