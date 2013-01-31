@@ -7,5 +7,9 @@
     "mongodb": "1.2.9",
     "async": "0.1.x",
     "xtend": "1.0.3"
+  },
+  "engines": {
+    "node": "0.8.18"
   }
+
 }
