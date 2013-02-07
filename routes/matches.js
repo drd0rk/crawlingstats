@@ -12,9 +12,6 @@
     return extend(new CRUDRoutes(matchModel), {
       list: function (req, res) {
         matchModel.list({
-          orderBy: {
-            date: -1
-          }
         }, function (err, matches) {
           if (err) {
             log.error(err);
