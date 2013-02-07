@@ -3,15 +3,16 @@
 
   angular.module("cachedResource", ["ngResource"]).
     factory("cachedResource", ["$resource", function ($resource) {
-      return function (path, hooks) {
-        if (!hooks) {
-          hooks = {};
+      return function (options) {
+        if (!options.hooks) {
+          options.hooks = {};
         }
-        var res = $resource(path, {}),
-          items = res.query(function (newItems) {
-            if (hooks.afterRead) {
+
+        var res = $resource(options.path, {});
+        var items = res.query(function (newItems) {
+            if (options.hooks.afterRead) {
               items = newItems.map(function (item) {
-                return hooks.afterRead(item);
+                return options.hooks.afterRead(item);
               });
             }
           });
@@ -26,12 +27,12 @@
           },
 
           save: function (item, callback) {
-            if (hooks.beforeWrite) {
-              item = hooks.beforeWrite(item);
+            if (options.hooks.beforeWrite) {
+              item = options.hooks.beforeWrite(item);
             }
             res.save(item, function (createdItem) {
-              if (hooks.afterRead) {
-                createdItem = hooks.afterRead(createdItem);
+              if (options.hooks.afterRead) {
+                createdItem = options.hooks.afterRead(createdItem);
               }
               items.push(createdItem);
               if (callback) {
