@@ -6,15 +6,19 @@
       <label>Datum</label>
       <input type="datetime" ng-model="newMatch.date" datetime/>
       <label>Team 1</label>
+      Defensive
       <select class="input-large" ng-model="newMatch.team1.defensive" ng-options="user.name for user in users" required>
       </select>
       <select class="input-large" ng-model="newMatch.team1.offensive" ng-options="user.name for user in users" required>
       </select>
+      Offensive
       <label>Team 2</label>
+      Defensive
       <select class="input-large" ng-model="newMatch.team2.defensive" ng-options="user.name for user in users" required>
       </select>
       <select class="input-large" ng-model="newMatch.team2.offensive" ng-options="user.name for user in users" required>
       </select>
+      Offensive
       <label>Ergebnis</label>
       Team 1 
       <input type="number" min="0" max="5" class="input-mini" ng-model="newMatch.result.team1" required /> : 
