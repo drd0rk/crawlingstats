@@ -4,12 +4,12 @@
     <thead>
       <tr>
         <th ng-click="sortBy('user.name')">Spieler</th>
-        <th ng-click="sortBy('games')">Spiele</th>
-        <th ng-click="sortBy('wins')">Siege</th>
-        <th ng-click="sortBy('losses')">Niederlagen</th>
-        <th ng-click="sortBy('crawlIndex')">Krabbel-Index</th>
-        <th ng-click="sortBy('crawled')">Gekrabbelt</th>
-        <th ng-click="sortBy('letCrawl')">Krabbeln lassen</th>
+        <th ng-click="sortBy(['-games', '-crawlIndex', 'crawled', '-wins'])">Spiele</th>
+        <th ng-click="sortBy(['-wins', '-crawlIndex', 'crawled', 'games'])">Siege</th>
+        <th ng-click="sortBy(['losses', '-crawlIndex', 'crawled', '-games'])">Niederlagen</th>
+        <th ng-click="sortBy(['-crawlIndex', 'crawled', '-letCrawl'])">Krabbel-Index</th>
+        <th ng-click="sortBy(['crawled', '-crawlIndex'])">Gekrabbelt</th>
+        <th ng-click="sortBy(['-letCrawl', '-crawlIndex'])">Krabbeln lassen</th>
       </tr>
     </thead>
     <tbody>

@@ -12,14 +12,14 @@
         return $scope.users.filter(function (u) { return u._id === id; })[0];
       };
 
-      $scope.sortCriterion = 'crawlIndex';
-      $scope.reverse = true;
+      $scope.sortCriterion = '-crawlIndex';
+      $scope.reverse = false;
       $scope.sortBy = function (criterion) {
-        if (criterion === $scope.sortCriterion) {
+        if (criterion.toString() === $scope.sortCriterion.toString()) {
           $scope.reverse = !$scope.reverse;
         } else {
           $scope.sortCriterion = criterion;
-          $scope.reverse = true;
+          $scope.reverse = false;
         }
       };
 
