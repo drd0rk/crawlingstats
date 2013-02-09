@@ -1,4 +1,29 @@
 <div>
+  <h3>Spielerstatistiken</h3>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Spieler</th>
+        <th>Spiele</th>
+        <th>Siege</th>
+        <th>Niederlagen</th>
+        <th>Krabbel-Index</th>
+        <th>Gekrabbelt</th>
+        <th>Krabbeln lassen</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="stat in stats">
+        <td>{{stat.user.name}}</td>
+        <td>{{stat.games}}</td>
+        <td>{{stat.wins}}</td>
+        <td>{{stat.losses}}</td>
+        <td>{{stat.letCrawl - stat.crawled}}</td>
+        <td>{{stat.crawled}}</td>
+        <td>{{stat.letCrawl}}</td>
+      </tr>
+    </tbody>
+  </table>
   <h3>Letzte Spiele</h3>
   <table class="table">
     <thead>
@@ -12,8 +37,8 @@
     <tbody>
       <tr ng-repeat="match in matches | orderBy:'-date' | limitTo:5">
         <td>{{match.date | datetime}}</td>
-        <td>Defensive: {{match.team1.defensive.name}}<br/>Offensive: {{match.team1.offensive.name}}</td>
-        <td>Defensive: {{match.team2.defensive.name}}<br/>Offensive: {{match.team2.offensive.name}}</td>
+        <td>Defensive: {{getUser(match.team1.defensive).name}}<br/>Offensive: {{getUser(match.team1.offensive).name}}</td>
+        <td>Defensive: {{getUser(match.team2.defensive).name}}<br/>Offensive: {{getUser(match.team2.offensive).name}}</td>
         <td>{{match.result.team1}} : {{match.result.team2}}</td>
       </tr>
     </tbody>
