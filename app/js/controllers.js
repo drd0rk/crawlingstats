@@ -59,6 +59,7 @@
           ustats.letCrawl = userWins.filter(function (m) {
             return m.result.team1 === 0 || m.result.team2 === 0;
           }).length;
+          ustats.crawlIndex = ustats.letCrawl - ustats.crawled;
 
           $scope.stats.push(ustats);
         });

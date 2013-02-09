@@ -13,12 +13,12 @@
       </tr>
     </thead>
     <tbody>
-      <tr ng-repeat="stat in stats">
+      <tr ng-repeat="stat in stats | orderBy:'-crawlIndex'">
         <td>{{stat.user.name}}</td>
         <td>{{stat.games}}</td>
         <td>{{stat.wins}}</td>
         <td>{{stat.losses}}</td>
-        <td>{{stat.letCrawl - stat.crawled}}</td>
+        <td>{{stat.crawlIndex}}</td>
         <td>{{stat.crawled}}</td>
         <td>{{stat.letCrawl}}</td>
       </tr>
