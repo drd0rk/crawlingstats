@@ -12,6 +12,17 @@
         return $scope.users.filter(function (u) { return u._id === id; })[0];
       };
 
+      $scope.sortCriterion = 'crawlIndex';
+      $scope.reverse = true;
+      $scope.sortBy = function (criterion) {
+        if (criterion === $scope.sortCriterion) {
+          $scope.reverse = !$scope.reverse;
+        } else {
+          $scope.sortCriterion = criterion;
+          $scope.reverse = true;
+        }
+      };
+
       $scope.$watch("users.$resolved && matches.$resolved", function (resolved) {
         if (resolved === true) {
           calculateStats($scope.users, $scope.matches);

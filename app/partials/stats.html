@@ -3,17 +3,17 @@
   <table class="table">
     <thead>
       <tr>
-        <th>Spieler</th>
-        <th>Spiele</th>
-        <th>Siege</th>
-        <th>Niederlagen</th>
-        <th>Krabbel-Index</th>
-        <th>Gekrabbelt</th>
-        <th>Krabbeln lassen</th>
+        <th ng-click="sortBy('user.name')">Spieler</th>
+        <th ng-click="sortBy('games')">Spiele</th>
+        <th ng-click="sortBy('wins')">Siege</th>
+        <th ng-click="sortBy('losses')">Niederlagen</th>
+        <th ng-click="sortBy('crawlIndex')">Krabbel-Index</th>
+        <th ng-click="sortBy('crawled')">Gekrabbelt</th>
+        <th ng-click="sortBy('letCrawl')">Krabbeln lassen</th>
       </tr>
     </thead>
     <tbody>
-      <tr ng-repeat="stat in stats | orderBy:'-crawlIndex'">
+      <tr ng-repeat="stat in stats | orderBy:sortCriterion:reverse">
         <td>{{stat.user.name}}</td>
         <td>{{stat.games}}</td>
         <td>{{stat.wins}}</td>
