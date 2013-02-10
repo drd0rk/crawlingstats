@@ -1,7 +1,7 @@
 <div>
   <h3>Spiel eintragen</h3>
   <div class="alert alert-block alert-success" ng-show="showSuccess">Spiel eingetragen.</div>
-  <form name="matchForm">
+  <form name="matchForm" novalidate>
     <fieldset>
       <label>Datum</label>
       <input type="datetime" ng-model="newMatch.date" datetime/>
