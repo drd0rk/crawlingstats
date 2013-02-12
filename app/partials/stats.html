@@ -7,6 +7,7 @@
         <th ng-click="sortBy(['-games', '-crawlIndex', 'crawled', '-wins'])">Spiele</th>
         <th ng-click="sortBy(['-wins', '-crawlIndex', 'crawled', 'games'])">Siege</th>
         <th ng-click="sortBy(['losses', '-crawlIndex', 'crawled', '-games'])">Niederlagen</th>
+        <th ng-click="sortBy(['-winRatio', '-games', '-crawlIndex', 'crawled'])">Siege/Spiele</th>
         <th ng-click="sortBy(['-crawlIndex', 'crawled', '-letCrawl'])">Krabbel-Index</th>
         <th ng-click="sortBy(['crawled', '-crawlIndex'])">Gekrabbelt</th>
         <th ng-click="sortBy(['-letCrawl', '-crawlIndex'])">Krabbeln lassen</th>
@@ -18,6 +19,7 @@
         <td>{{stat.games}}</td>
         <td>{{stat.wins}}</td>
         <td>{{stat.losses}}</td>
+        <td>{{stat.winRatio | number:2}}</td>
         <td>{{stat.crawlIndex}}</td>
         <td>{{stat.crawled}}</td>
         <td>{{stat.letCrawl}}</td>

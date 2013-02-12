@@ -60,10 +60,11 @@
             return m.result.team2 < m.result.team1;
           }));
 
-          // games count
+          // stats
           ustats.games = userMatches.length;
           ustats.wins = userWins.length;
           ustats.losses = userLosses.length;
+          ustats.winRatio = (userWins.length / userMatches.length) || 0;
           ustats.crawled = userLosses.filter(function (m) {
             return m.result.team1 === 0 || m.result.team2 === 0;
           }).length;
