@@ -12,7 +12,7 @@
         return $scope.users.filter(function (u) { return u._id === id; })[0];
       };
 
-      $scope.sortCriterion = '-crawlIndex';
+      $scope.sortCriterion = '-crawlIndexRatio';
       $scope.reverse = false;
       $scope.sortBy = function (criterion) {
         if (criterion.toString() === $scope.sortCriterion.toString()) {
@@ -72,6 +72,7 @@
             return m.result.team1 === 0 || m.result.team2 === 0;
           }).length;
           ustats.crawlIndex = ustats.letCrawl - ustats.crawled;
+          ustats.crawlIndexRatio = (ustats.crawlIndex / ustats.games) || 0;
 
           $scope.stats.push(ustats);
         });
