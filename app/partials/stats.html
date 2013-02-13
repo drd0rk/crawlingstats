@@ -3,15 +3,15 @@
   <table class="table">
     <thead>
       <tr>
-        <th ng-click="sortBy('user.name')">Spieler</th>
-        <th ng-click="sortBy(['-games', '-crawlIndex', 'crawled', '-wins'])">Spiele</th>
-        <th ng-click="sortBy(['-winRatio', '-games', '-crawlIndex', 'crawled'])">Siege/Spiele</th>
-        <th ng-click="sortBy(['-wins', '-crawlIndex', 'crawled', 'games'])">Siege</th>
-        <th ng-click="sortBy(['losses', '-crawlIndex', 'crawled', '-games'])">Niederlagen</th>
-        <th ng-click="sortBy(['-crawlIndexRatio', '-winRatio', 'crawled'])">Krabbel-Index/Spiele</th>
-        <th ng-click="sortBy(['-crawlIndex', 'crawled', '-letCrawl'])">Krabbel-Index</th>
-        <th ng-click="sortBy(['crawled', '-crawlIndex'])">Gekrabbelt</th>
-        <th ng-click="sortBy(['-letCrawl', '-crawlIndex'])">Krabbeln lassen</th>
+        <th ng-class="{underline: sortCriterion=='user.name'}" ng-click="sortBy('user.name')">Spieler</th>
+        <th ng-class="{underline: sortCriterion[0]=='-games'}" ng-click="sortBy(['-games', '-crawlIndex', 'crawled', '-wins'])">Spiele</th>
+        <th ng-class="{underline: sortCriterion[0]=='-winRatio'}" ng-click="sortBy(['-winRatio', '-games', '-crawlIndex', 'crawled'])">Siege/Spiele</th>
+        <th ng-class="{underline: sortCriterion[0]=='-wins'}" ng-click="sortBy(['-wins', '-crawlIndex', 'crawled', 'games'])">Siege</th>
+        <th ng-class="{underline: sortCriterion[0]=='losses'}" ng-click="sortBy(['losses', '-crawlIndex', 'crawled', '-games'])">Niederlagen</th>
+        <th ng-class="{underline: sortCriterion[0]=='-crawlIndexRatio'}" ng-click="sortBy(['-crawlIndexRatio', '-winRatio', 'crawled'])">Krabbel-Index/Spiele</th>
+        <th ng-class="{underline: sortCriterion[0]=='-crawlIndex'}" ng-click="sortBy(['-crawlIndex', 'crawled', '-letCrawl'])">Krabbel-Index</th>
+        <th ng-class="{underline: sortCriterion[0]=='crawled'}" ng-click="sortBy(['crawled', '-crawlIndex'])">Gekrabbelt</th>
+        <th ng-class="{underline: sortCriterion[0]=='-letCrawl'}" ng-click="sortBy(['-letCrawl', '-crawlIndex'])">Krabbeln lassen</th>
       </tr>
     </thead>
     <tbody>

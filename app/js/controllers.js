@@ -12,7 +12,7 @@
         return $scope.users.filter(function (u) { return u._id === id; })[0];
       };
 
-      $scope.sortCriterion = '-crawlIndexRatio';
+      $scope.sortCriterion = ['-crawlIndexRatio', '-winRatio', 'crawled'];
       $scope.reverse = false;
       $scope.sortBy = function (criterion) {
         if (criterion.toString() === $scope.sortCriterion.toString()) {
