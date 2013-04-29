@@ -24,6 +24,9 @@
   });
 
   mongodb.Db.connect(app.get("mongodburl"), {server: {poolSize: 150, auto_reconnect: true}, db: {safe_mode: true}}, function (err, db) {
+    if (err) {
+      return log.error(err);
+    }
     log.trace("DB connection established");
 
     var users = require('./routes/users')(db),
