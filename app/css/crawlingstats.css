@@ -13,3 +13,7 @@ input {
 .underline {
   text-decoration: underline;
 }
+
+.crawled {
+  background-color: red;
+}
