@@ -39,10 +39,10 @@
       </tr>
     </thead>
     <tbody>
-      <tr ng-repeat="match in matches | orderBy:'-date' | limitTo:5">
+      <tr ng-repeat="match in matches | orderBy:'-date' | limitTo:15" ng-class="{crawled: isToZero(match)}">
         <td>{{match.date | datetime}}</td>
-        <td>Defensive: {{getUser(match.team1.defensive).name}}<br/>Offensive: {{getUser(match.team1.offensive).name}}</td>
-        <td>Defensive: {{getUser(match.team2.defensive).name}}<br/>Offensive: {{getUser(match.team2.offensive).name}}</td>
+        <td>{{getUser(match.team1.defensive).name}}, {{getUser(match.team1.offensive).name}}</td>
+        <td>{{getUser(match.team2.defensive).name}}, {{getUser(match.team2.offensive).name}}</td>
         <td>{{match.result.team1}} : {{match.result.team2}}</td>
       </tr>
     </tbody>

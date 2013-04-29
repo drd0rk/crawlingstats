@@ -22,6 +22,12 @@
           $scope.reverse = false;
         }
       };
+      $scope.isToZero = function (match) {
+        if (match.result.team1 === 0 || match.result.team2 === 0) {
+          return true;
+        }
+        return false;
+      };
 
       $scope.$watch("users.$resolved && matches.$resolved", function (resolved) {
         if (resolved === true) {
