@@ -8,13 +8,23 @@
       $scope.matches = matches.query();
 
       $scope.sortCriterion = ['-winRatio', '-games', '-crawlIndex', 'crawled'];
+      $scope.teamSortCriterion = ['-winRatio', '-games', '-crawlRatio', 'crawled'];
       $scope.reverse = false;
+      $scope.teamReverse = false;
       $scope.sortBy = function (criterion) {
         if (criterion.toString() === $scope.sortCriterion.toString()) {
           $scope.reverse = !$scope.reverse;
         } else {
           $scope.sortCriterion = criterion;
           $scope.reverse = false;
+        }
+      };
+      $scope.teamSortBy = function (criterion) {
+        if (criterion.toString() === $scope.teamSortCriterion.toString()) {
+          $scope.teamReverse = !$scope.teamReverse;
+        } else {
+          $scope.teamSortCriterion = criterion;
+          $scope.teamReverse = false;
         }
       };
       $scope.isToZero = matchutils.isToZero;
