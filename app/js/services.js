@@ -14,7 +14,7 @@
     }]).
 
     factory("users", ["cachedResource", function (cachedResource) {
-      return cachedResource({path: "/users/:id"});
+      return cachedResource({path: "/users/:_id"});
     }])
 
     .factory('matchutils', [function () {
@@ -110,7 +110,7 @@
             stats.winRatio = (stats.wins / stats.games) * 100 || 0;
             stats.crawlRatio = (stats.crawled / stats.games) * 100 || 0;
             stats.letCrawlRatio = (stats.letCrawl / stats.games) * 100 || 0;
-            stats.user = users.get({id: s});
+            stats.user = users.get({_id: s});
             if (stats.games >= 5) {
               userstats.push(stats);
             }
@@ -149,16 +149,16 @@
             stats.crawled = stats.crawled || 0;
             stats.letCrawl = stats.letCrawl || 0;
             stats.games = stats.wins + stats.losses;
-            stats.winRatio = (stats.wins / stats.games) || 0;
-            stats.crawlRatio = (stats.crawled / stats.games) || 0;
-            stats.letCrawlRatio = (stats.letCrawl / stats.games) || 0;
+            stats.winRatio = (stats.wins / stats.games) * 100 || 0;
+            stats.crawlRatio = (stats.crawled / stats.games) * 100 || 0;
+            stats.letCrawlRatio = (stats.letCrawl / stats.games) * 100 || 0;
             stats.goalsPerGame = (stats.goals / stats.games) || 0;
             if (stats.games >= 5) {
               teamstats.push(stats);
             }
             memberIds = s.split('-');
-            users.get({id: memberIds[0]}, function (def) {
-              users.get({id: memberIds[1]}, function (off) {
+            users.get({_id: memberIds[0]}, function (def) {
+              users.get({_id: memberIds[1]}, function (off) {
                 stats.team = def.name + ', ' + off.name;
               });
             });
