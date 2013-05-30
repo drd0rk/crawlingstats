@@ -97,7 +97,9 @@
             stats.crawlRatio = (stats.crawled / stats.games) * 100 || 0;
             stats.letCrawlRatio = (stats.letCrawl / stats.games) * 100 || 0;
             stats.user = users.get({id: s});
-            userstats.push(stats);
+            if (stats.games >= 5) {
+              userstats.push(stats);
+            }
           });
           return userstats;
         }
