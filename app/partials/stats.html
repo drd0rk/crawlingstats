@@ -9,7 +9,7 @@
         <th ng-class="{underline: sortCriterion[0]=='-winRatio'}" ng-click="sortBy(['-winRatio', '-games', '-crawlRatio', 'crawled'])">Quote</th>
         <th ng-class="{underline: sortCriterion[0]=='losses'}" ng-click="sortBy(['losses', '-crawlRatio', 'crawled', '-games'])">Niederlagen</th>
         <th ng-class="{underline: sortCriterion[0]=='crawled'}" ng-click="sortBy(['crawled', '-crawlRatio'])">Gekrabbelt</th>
-        <th ng-class="{underline: sortCriterion[0]=='-crawlIndexRatio'}" ng-click="sortBy(['-crawlRatio', '-winRatio', 'crawled'])">Quote</th>
+        <th ng-class="{underline: sortCriterion[0]=='-crawlIndexRatio'}" ng-click="sortBy(['crawlRatio', '-winRatio', 'crawled'])">Quote</th>
         <th ng-class="{underline: sortCriterion[0]=='-letCrawl'}" ng-click="sortBy(['-letCrawl', '-crawlRatio'])">Krabbeln lassen</th>
         <th ng-class="{underline: sortCriterion[0]=='-crawlIndex'}" ng-click="sortBy(['-letCrawlRatio', 'crawled', '-letCrawl'])">Quote</th>
       </tr>
