@@ -26,11 +26,25 @@
           return match.team2;
         },
 
+        getWinningTeamGoals: function (match) {
+          if (match.result.team1 > match.result.team2) {
+            return match.result.team1;
+          }
+          return match.result.team2;
+        },
+
         getLosingTeam: function (match) {
           if (match.result.team2 > match.result.team1) {
             return match.team1;
           }
           return match.team2;
+        },
+
+        getLosingTeamGoals: function (match) {
+          if (match.result.team2 > match.result.team1) {
+            return match.result.team1;
+          }
+          return match.result.team2;
         },
 
         isToZero: function (match) {
@@ -97,9 +111,59 @@
             stats.crawlRatio = (stats.crawled / stats.games) * 100 || 0;
             stats.letCrawlRatio = (stats.letCrawl / stats.games) * 100 || 0;
             stats.user = users.get({id: s});
-            userstats.push(stats);
+            if (stats.games >= 5) {
+              userstats.push(stats);
+            }
           });
           return userstats;
+        }
+      };
+    }])
+
+    .factory('teamstats', ['RawStats', 'matchutils', 'users', function (RawStats, mu, users) {
+      return {
+        calc: function (matches) {
+          var rawStats = new RawStats(), teamstats = [];
+          matches.forEach(function (m) {
+            var wTeam = mu.getWinningTeam(m).defensive + '-' + mu.getWinningTeam(m).offensive;
+            var lTeam = mu.getLosingTeam(m).defensive + '-' + mu.getLosingTeam(m).offensive;
+            // wins
+            rawStats.addOne(wTeam, 'wins');
+            // losses
+            rawStats.addOne(lTeam, 'losses');
+            // goals
+            rawStats.add(wTeam, 'goals', mu.getWinningTeamGoals(m));
+            rawStats.add(lTeam, 'goals', mu.getLosingTeamGoals(m));
+            // crawls
+            if (mu.isToZero(m)) {
+              rawStats.addOne(wTeam, 'letCrawl');
+              rawStats.addOne(lTeam, 'crawled');
+            }
+          });
+          Object.getOwnPropertyNames(rawStats.getAll()).forEach(function (s) {
+            var stats = rawStats.getAll()[s];
+            var memberIds;
+            stats.wins = stats.wins || 0;
+            stats.losses = stats.losses || 0;
+            stats.goals = stats.goals || 0;
+            stats.crawled = stats.crawled || 0;
+            stats.letCrawl = stats.letCrawl || 0;
+            stats.games = stats.wins + stats.losses;
+            stats.winRatio = (stats.wins / stats.games) || 0;
+            stats.crawlRatio = (stats.crawled / stats.games) || 0;
+            stats.letCrawlRatio = (stats.letCrawl / stats.games) || 0;
+            stats.goalsPerGame = (stats.goals / stats.games) || 0;
+            if (stats.games >= 5) {
+              teamstats.push(stats);
+            }
+            memberIds = s.split('-');
+            users.get({id: memberIds[0]}, function (def) {
+              users.get({id: memberIds[1]}, function (off) {
+                stats.team = def.name + ', ' + off.name;
+              });
+            });
+          });
+          return teamstats;
         }
       };
     }]);
