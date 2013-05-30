@@ -4,27 +4,27 @@
     <thead>
       <tr>
         <th ng-class="{underline: sortCriterion=='user.name'}" ng-click="sortBy('user.name')">Spieler</th>
-        <th ng-class="{underline: sortCriterion[0]=='-games'}" ng-click="sortBy(['-games', '-crawlIndex', 'crawled', '-wins'])">Sp</th>
-        <th ng-class="{underline: sortCriterion[0]=='-winRatio'}" ng-click="sortBy(['-winRatio', '-games', '-crawlIndex', 'crawled'])">S/Sp</th>
-        <th ng-class="{underline: sortCriterion[0]=='-wins'}" ng-click="sortBy(['-wins', '-crawlIndex', 'crawled', 'games'])">S</th>
-        <th ng-class="{underline: sortCriterion[0]=='losses'}" ng-click="sortBy(['losses', '-crawlIndex', 'crawled', '-games'])">N</th>
-        <th ng-class="{underline: sortCriterion[0]=='-crawlIndexRatio'}" ng-click="sortBy(['-crawlIndexRatio', '-winRatio', 'crawled'])">K-Index/Sp</th>
-        <th ng-class="{underline: sortCriterion[0]=='-crawlIndex'}" ng-click="sortBy(['-crawlIndex', 'crawled', '-letCrawl'])">K-Index</th>
-        <th ng-class="{underline: sortCriterion[0]=='crawled'}" ng-click="sortBy(['crawled', '-crawlIndex'])">K</th>
-        <th ng-class="{underline: sortCriterion[0]=='-letCrawl'}" ng-click="sortBy(['-letCrawl', '-crawlIndex'])">Kl</th>
+        <th ng-class="{underline: sortCriterion[0]=='-games'}" ng-click="sortBy(['-games', '-crawlIndex', 'crawled', '-wins'])">Spiele</th>
+        <th ng-class="{underline: sortCriterion[0]=='-wins'}" ng-click="sortBy(['-wins', '-crawlIndex', 'crawled', 'games'])">Siege</th>
+        <th ng-class="{underline: sortCriterion[0]=='-winRatio'}" ng-click="sortBy(['-winRatio', '-games', '-crawlIndex', 'crawled'])">Quote</th>
+        <th ng-class="{underline: sortCriterion[0]=='losses'}" ng-click="sortBy(['losses', '-crawlIndex', 'crawled', '-games'])">Niederlagen</th>
+        <th ng-class="{underline: sortCriterion[0]=='crawled'}" ng-click="sortBy(['crawled', '-crawlIndex'])">Gekrabbelt</th>
+        <th ng-class="{underline: sortCriterion[0]=='-crawlIndexRatio'}" ng-click="sortBy(['-crawlIndexRatio', '-winRatio', 'crawled'])">Quote</th>
+        <th ng-class="{underline: sortCriterion[0]=='-letCrawl'}" ng-click="sortBy(['-letCrawl', '-crawlIndex'])">Krabbeln lassen</th>
+        <th ng-class="{underline: sortCriterion[0]=='-crawlIndex'}" ng-click="sortBy(['-crawlIndex', 'crawled', '-letCrawl'])">Quote</th>
       </tr>
     </thead>
     <tbody>
       <tr ng-repeat="stat in stats | orderBy:sortCriterion:reverse">
         <td>{{stat.user.name}}</td>
         <td>{{stat.games}}</td>
-        <td>{{stat.winRatio | number:2}}</td>
         <td>{{stat.wins}}</td>
+        <td>{{stat.winRatio | number:2}}%</td>
         <td>{{stat.losses}}</td>
-        <td>{{stat.crawlIndexRatio | number:2}}</td>
-        <td>{{stat.crawlIndex}}</td>
         <td>{{stat.crawled}}</td>
+        <td>{{stat.crawlRatio | number:2}}%</td>
         <td>{{stat.letCrawl}}</td>
+        <td>{{stat.letCrawlRatio | number:2}}%</td>
       </tr>
     </tbody>
   </table>
