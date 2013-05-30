@@ -1,4 +1,38 @@
 <div>
+  <h3>Teamstatistiken</h3>
+  <table class="table">
+    <thead>
+      <tr>
+        <th ng-class="{underline: teamSortCriterion=='team'}" ng-click="teamSortBy('team')">Team</th>
+        <th ng-class="{underline: sortCriterion[0]=='-games'}" ng-click="sortBy(['-games', '-crawlRatio', 'crawled', '-wins'])">Spiele</th>
+        <th ng-class="{underline: sortCriterion[0]=='-wins'}" ng-click="sortBy(['-wins', '-crawlRatio', 'crawled', 'games'])">Siege</th>
+        <th ng-class="{underline: sortCriterion[0]=='-winRatio'}" ng-click="sortBy(['-winRatio', '-games', '-crawlRatio', 'crawled'])">Quote</th>
+        <th ng-class="{underline: sortCriterion[0]=='losses'}" ng-click="sortBy(['losses', '-crawlRatio', 'crawled', '-games'])">Niederlagen</th>
+        <th ng-class="{underline: sortCriterion[0]=='goals'}" ng-click="sortBy(['goals', 'winRatio', 'crawled', '-games'])">Tore</th>
+        <th ng-class="{underline: sortCriterion[0]=='goalsPerGame'}" ng-click="sortBy(['goalsPerGame', 'winRatio', 'crawled', '-games'])">Tore/Spiel</th>
+        <th ng-class="{underline: sortCriterion[0]=='crawled'}" ng-click="sortBy(['crawled', '-crawlRatio'])">Gekrabbelt</th>
+        <th ng-class="{underline: sortCriterion[0]=='-crawlRatio'}" ng-click="sortBy(['crawlRatio', '-winRatio', 'crawled'])">Quote</th>
+        <th ng-class="{underline: sortCriterion[0]=='-letCrawl'}" ng-click="sortBy(['-letCrawl', '-crawlRatio'])">Krabbeln lassen</th>
+        <th ng-class="{underline: sortCriterion[0]=='-letCrawlRatio'}" ng-click="sortBy(['-letCrawlRatio', 'crawled', '-letCrawl'])">Quote</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="stat in teamstats | orderBy:teamSortCriterion:reverse">
+        <td>{{stat.team}}</td>
+        <td>{{stat.games}}</td>
+        <td>{{stat.wins}}</td>
+        <td>{{stat.winRatio | number:2}}%</td>
+        <td>{{stat.losses}}</td>
+        <td>{{stat.goals}}</td>
+        <td>{{stat.goalsPerGame}}</td>
+        <td>{{stat.crawled}}</td>
+        <td>{{stat.crawlRatio | number:2}}%</td>
+        <td>{{stat.letCrawl}}</td>
+        <td>{{stat.letCrawlRatio | number:2}}%</td>
+      </tr>
+    </tbody>
+  </table>
+
   <h3>Spielerstatistiken</h3>
   <table class="table">
     <thead>
@@ -9,13 +43,13 @@
         <th ng-class="{underline: sortCriterion[0]=='-winRatio'}" ng-click="sortBy(['-winRatio', '-games', '-crawlRatio', 'crawled'])">Quote</th>
         <th ng-class="{underline: sortCriterion[0]=='losses'}" ng-click="sortBy(['losses', '-crawlRatio', 'crawled', '-games'])">Niederlagen</th>
         <th ng-class="{underline: sortCriterion[0]=='crawled'}" ng-click="sortBy(['crawled', '-crawlRatio'])">Gekrabbelt</th>
-        <th ng-class="{underline: sortCriterion[0]=='-crawlIndexRatio'}" ng-click="sortBy(['crawlRatio', '-winRatio', 'crawled'])">Quote</th>
+        <th ng-class="{underline: sortCriterion[0]=='-crawlRatio'}" ng-click="sortBy(['crawlRatio', '-winRatio', 'crawled'])">Quote</th>
         <th ng-class="{underline: sortCriterion[0]=='-letCrawl'}" ng-click="sortBy(['-letCrawl', '-crawlRatio'])">Krabbeln lassen</th>
-        <th ng-class="{underline: sortCriterion[0]=='-crawlIndex'}" ng-click="sortBy(['-letCrawlRatio', 'crawled', '-letCrawl'])">Quote</th>
+        <th ng-class="{underline: sortCriterion[0]=='-letCrawlRatio'}" ng-click="sortBy(['-letCrawlRatio', 'crawled', '-letCrawl'])">Quote</th>
       </tr>
     </thead>
     <tbody>
-      <tr ng-repeat="stat in stats | orderBy:sortCriterion:reverse">
+      <tr ng-repeat="stat in userstats | orderBy:sortCriterion:reverse">
         <td>{{stat.user.name}}</td>
         <td>{{stat.games}}</td>
         <td>{{stat.wins}}</td>
@@ -28,6 +62,7 @@
       </tr>
     </tbody>
   </table>
+
   <h3>Letzte Spiele</h3>
   <table class="table">
     <thead>

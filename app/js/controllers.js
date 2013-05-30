@@ -2,11 +2,10 @@
   "use strict";
 
   angular.module("crawlingcontrollers", []).
-    controller("stats", ["$scope", "matches", "users", 'matchutils', 'userstats', function ($scope, matches, users, matchutils, userstats) {
+    controller("stats", ["$scope", "matches", "users", 'matchutils', 'userstats', 'teamstats', function ($scope, matches, users, matchutils, userstats, teamstats) {
       var calculateStats;
       $scope.users = users.query();
       $scope.matches = matches.query();
-      $scope.stats = [];
 
       $scope.sortCriterion = ['-winRatio', '-games', '-crawlIndex', 'crawled'];
       $scope.reverse = false;
@@ -21,7 +20,8 @@
       $scope.isToZero = matchutils.isToZero;
 
       $scope.$watch("users.$resolved && matches.$resolved", function (resolved) {
-        $scope.stats = userstats.calc($scope.matches);
+        $scope.userstats = userstats.calc($scope.matches);
+        $scope.teamstats = teamstats.calc($scope.matches);
       });
 
       $scope.getUser = function (id) {
