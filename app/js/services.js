@@ -10,7 +10,18 @@
     }).
 
     factory("matches", ["cachedResource", "users", function (cachedResource, users) {
-      return cachedResource({path: "/matches"});
+      var res = cachedResource({path: "/matches"});
+      res.getByTimeSpan = function (begin, end, callback) {
+        var matches = [];
+        this.query(function (all) {
+          angular.copy(all.filter(function (m) {
+            return m.date > begin && m.date < end;
+          }), matches);
+          matches.$resolved = true;
+        });
+        return matches;
+      }
+      return res;
     }]).
 
     factory("users", ["cachedResource", function (cachedResource) {

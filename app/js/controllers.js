@@ -2,6 +2,7 @@
   "use strict";
 
   angular.module("crawlingcontrollers", []).
+
     controller("stats", ["$scope", "matches", "users", 'matchutils', 'userstats', 'teamstats', function ($scope, matches, users, matchutils, userstats, teamstats) {
       var calculateStats;
       $scope.users = users.query();
