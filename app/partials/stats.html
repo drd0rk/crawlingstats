@@ -1,4 +1,19 @@
 <div>
+  <div class="container">
+    <h3>Statistiken</h3>
+    <div class="span4">
+      <dl class="dl-horizontal">
+        <dt>Anzahl Spiele</dt>
+        <dd>{{matches.length}}</dd>
+        <dt>Anzahl Spieler</dt>
+        <dd>{{users.length}}</dd>
+        <dt>zuletzt gekrabbelt</dt>
+        <dd>{{overallstats.lastCrawlers | team}}</dd>
+        <dt>zuletzt krabbeln lassen</dt>
+        <dd>{{overallstats.lastLetCrawlers | team}}</dd>
+      </dl>
+    </div>
+  </div>
   <h3>Teamstatistiken</h3>
   <table class="table">
     <thead>
@@ -18,7 +33,7 @@
     </thead>
     <tbody>
       <tr ng-repeat="stat in teamstats | orderBy:teamSortCriterion:teamReverse">
-        <td>{{stat.team}}</td>
+        <td>{{stat.team | team}}</td>
         <td>{{stat.games}}</td>
         <td>{{stat.wins}}</td>
         <td>{{stat.winRatio | number:2}}%</td>
@@ -50,7 +65,7 @@
     </thead>
     <tbody>
       <tr ng-repeat="stat in userstats | orderBy:sortCriterion:reverse">
-        <td>{{stat.user.name}}</td>
+        <td>{{stat.user | player}}</td>
         <td>{{stat.games}}</td>
         <td>{{stat.wins}}</td>
         <td>{{stat.winRatio | number:2}}%</td>
