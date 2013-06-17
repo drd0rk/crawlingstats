@@ -71,6 +71,13 @@
       return function () {
         var stats =  {};
         return {
+          set: function (key, statname, value) {
+            if (!stats[key]) {
+              stats[key] = {};
+            }
+            stats[key][statname] = value;
+          },
+
           add: function (key, statname, value) {
             if (!stats[key]) {
               stats[key] = {};
@@ -89,6 +96,21 @@
             return stats;
           }
         };
+      };
+    }])
+
+    .factory('overallstats', ['RawStats', 'matchutils', 'users', 'matches', function (RawStats, mu, users, matches) {
+      return {
+        calc: function (matches) {
+          var stats = {};
+          matches.forEach(function (m) {
+            if (mu.isToZero(m)) {
+              stats.lastCrawlers = mu.getLosingTeam(m);
+              stats.lastLetCrawlers = mu.getWinningTeam(m);
+            }
+          });
+          return stats;
+        }
       };
     }])
 
@@ -121,7 +143,7 @@
             stats.winRatio = (stats.wins / stats.games) * 100 || 0;
             stats.crawlRatio = (stats.crawled / stats.games) * 100 || 0;
             stats.letCrawlRatio = (stats.letCrawl / stats.games) * 100 || 0;
-            stats.user = users.get({_id: s});
+            stats.user = s;
             if (stats.games >= 5) {
               userstats.push(stats);
             }
@@ -138,6 +160,8 @@
           matches.forEach(function (m) {
             var wTeam = mu.getWinningTeam(m).defensive + '-' + mu.getWinningTeam(m).offensive;
             var lTeam = mu.getLosingTeam(m).defensive + '-' + mu.getLosingTeam(m).offensive;
+            rawStats.set(wTeam, 'team', mu.getWinningTeam(m));
+            rawStats.set(lTeam, 'team', mu.getLosingTeam(m));
             // wins
             rawStats.addOne(wTeam, 'wins');
             // losses
@@ -153,7 +177,6 @@
           });
           Object.getOwnPropertyNames(rawStats.getAll()).forEach(function (s) {
             var stats = rawStats.getAll()[s];
-            var memberIds;
             stats.wins = stats.wins || 0;
             stats.losses = stats.losses || 0;
             stats.goals = stats.goals || 0;
@@ -167,12 +190,6 @@
             if (stats.games >= 5) {
               teamstats.push(stats);
             }
-            memberIds = s.split('-');
-            users.get({_id: memberIds[0]}, function (def) {
-              users.get({_id: memberIds[1]}, function (off) {
-                stats.team = def.name + ', ' + off.name;
-              });
-            });
           });
           return teamstats;
         }
