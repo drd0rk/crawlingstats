@@ -4,7 +4,7 @@
   <form name="matchForm" novalidate>
     <fieldset>
       <label>Datum</label>
-      <input type="datetime" ng-model="newMatch.date" datetime/>
+      <input ng-model="newMatch.date" datetime/>
       <label>Team 1</label>
       Defensive
       <select class="input-large" ng-model="newMatch.team1.defensive" ng-options="user._id as user.name for user in users" required>
