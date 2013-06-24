@@ -9,6 +9,7 @@
 
   app.configure(function () {
     app.set("port", process.env.PORT || 3000);
+    app.use(express.compress());
     app.use(express.static(__dirname + "/app"));
     app.use(express.bodyParser());
   });
