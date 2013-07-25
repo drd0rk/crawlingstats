@@ -8,6 +8,7 @@
     mongodb = require('mongodb');
 
   app.configure(function () {
+    app.use(express.logger());
     app.set("port", process.env.PORT || 3000);
     app.use(express.compress());
     app.use(express.static(__dirname + "/app"));
