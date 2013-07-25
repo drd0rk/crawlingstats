@@ -5,14 +5,14 @@
     <fieldset>
       <label>Datum</label>
       <input ng-model="newMatch.date" datetime/>
-      <label>Team 1</label>
+      <label>Team Blau</label>
       Defensive
       <select class="input-large" ng-model="newMatch.team1.defensive" ng-options="user._id as user.name for user in users" required>
       </select>
       <select class="input-large" ng-model="newMatch.team1.offensive" ng-options="user._id as user.name for user in users" required>
       </select>
       Offensive
-      <label>Team 2</label>
+      <label>Team Rot</label>
       Defensive
       <select class="input-large" ng-model="newMatch.team2.defensive" ng-options="user._id as user.name for user in users" required>
       </select>
@@ -20,10 +20,10 @@
       </select>
       Offensive
       <label>Ergebnis</label>
-      Team 1 
+      Team Blau
       <input type="number" min="0" max="5" class="input-mini" ng-model="newMatch.result.team1" required /> : 
       <input type="number" min="0" max="5" class="input-mini" ng-model="newMatch.result.team2" required />
-      Team 2<br/>
+      Team Rot<br/>
       <button type="submit" class="btn btn-primary" ng-click="addMatch(newMatch)" ng-disabled="matchForm.$invalid">Spiel eintragen</button>
     </fieldset>
   </form>
