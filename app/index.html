@@ -2,18 +2,19 @@
   <head>
     <title>Krabbelstatistik</title>
     <!--<meta name="viewport" content="width=device-width, initial-scale=1.0">-->
-    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"></link>
+    <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
+    <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="css/crawlingstats.css"></link>
   </head>
   <body>
     <div class="navbar navbar-fixed-top navbar-inverse">
       <div class="navbar-inner">
         <div class="container-fluid">
-          <a class="brand" href="#">Krabbelstatistik</a>
+          <a class="brand" href="#">KS</a>
           <ul class="nav">
-            <li><a href="#/stats">Statistik</a></li>
-            <li><a href="#/addmatch">Spiel eintragen</a></li>
-            <li><a href="#/adduser">Spieler hinzufügen</a></li>
+            <li><a href="#/stats"><i class="icon-table"></i></a></li>
+            <li><a href="#/addmatch"><i class="icon-plus-sign-alt"></i></a></li>
+            <li><a href="#/adduser"><i class="icon-user"></i></a></li>
           </ul>
         </div>
       </div>
@@ -22,7 +23,7 @@
     <div class="container" ng-view></div>
 
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-    <script src="js/lib/bootstrap/bootstrap.min.js"></script>
+    <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.1.3/angular.min.js"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.1.3/angular-resource.min.js"></script>
     <script src="js/lib/angular-cachedResource/angular-cachedResource.js"></script>
