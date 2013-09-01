@@ -52,6 +52,29 @@
         $scope.resetMatch();
         $scope.showSuccess = 1;
       };
+
+      $scope.removeSelected = function (user) {
+        var m = $scope.newMatch;
+        return [m.team1, m.team2].every(function (t) {
+          if (t === undefined) {
+            return true;
+          } else {
+            return [t.defensive, t.offensive].every(function (p) {
+              return p !== user._id;
+            });
+          }
+        });
+      };
+
+      $scope.getUserName = function (id) {
+        if (!id) {
+          return '';
+        }
+        return $scope.users.filter(function (u) {
+          return u._id === id;
+        })[0].name;
+      };
+
       $scope.users = users.query();
       $scope.resetMatch();
     }]).

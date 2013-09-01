@@ -17,3 +17,7 @@ input {
 .crawled {
   background-color: red;
 }
+
+.form label {
+  margin-top: 10px;
+}

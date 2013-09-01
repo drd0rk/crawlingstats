@@ -1,29 +1,36 @@
 <div>
-  <h3>Spiel eintragen</h3>
+  <h2>Spiel eintragen</h2>
   <div class="alert alert-block alert-success" ng-show="showSuccess">Spiel eingetragen.</div>
-  <form name="matchForm" novalidate>
+  <form name="matchForm" novalidate class="form">
     <fieldset>
-      <label>Datum</label>
+      <h3>Datum</h3>
       <input ng-model="newMatch.date" datetime/>
-      <label>Team Blau</label>
-      Defensive
-      <select class="input-large" ng-model="newMatch.team1.defensive" ng-options="user._id as user.name for user in users" required>
+      <h3>Team Blau</h3>
+      <label>Defensive</label>
+      <span ng-show="newMatch.team1.defensive" ng-click="newMatch.team1.defensive = undefined"><strong ng-bind="getUserName(newMatch.team1.defensive)"></strong></span>
+      <select class="input-large" ng-hide="newMatch.team1.defensive" ng-model="newMatch.team1.defensive" ng-options="user._id as user.name for user in users | filter:removeSelected" required>
       </select>
-      <select class="input-large" ng-model="newMatch.team1.offensive" ng-options="user._id as user.name for user in users" required>
+      <br>
+      <label>Offensive</label>
+      <span ng-show="newMatch.team1.offensive" ng-click="newMatch.team1.offensive = undefined"><strong ng-bind="getUserName(newMatch.team1.offensive)"></strong></span>
+      <select class="input-large" ng-hide="newMatch.team1.offensive" ng-model="newMatch.team1.offensive" ng-options="user._id as user.name for user in users | filter:removeSelected" required>
       </select>
-      Offensive
-      <label>Team Rot</label>
-      Defensive
-      <select class="input-large" ng-model="newMatch.team2.defensive" ng-options="user._id as user.name for user in users" required>
+      <h3>Team Rot</h3>
+      <label>Defensive</label>
+      <span ng-show="newMatch.team2.defensive" ng-click="newMatch.team2.defensive = undefined"><strong ng-bind="getUserName(newMatch.team2.defensive)"></strong></span>
+      <select class="input-large" ng-hide="newMatch.team2.defensive" ng-model="newMatch.team2.defensive" ng-options="user._id as user.name for user in users | filter:removeSelected" required>
       </select>
-      <select class="input-large" ng-model="newMatch.team2.offensive" ng-options="user._id as user.name for user in users" required>
+      <br>
+      <label>Offensive</label>
+      <span ng-show="newMatch.team2.offensive" ng-click="newMatch.team2.offensive = undefined"><strong ng-bind="getUserName(newMatch.team2.offensive)"></strong></span>
+      <select class="input-large" ng-hide="newMatch.team2.offensive" ng-model="newMatch.team2.offensive" ng-options="user._id as user.name for user in users | filter:removeSelected" required>
       </select>
-      Offensive
-      <label>Ergebnis</label>
+      <h3>Ergebnis</h3>
       Team Blau
       <input type="number" min="0" max="5" class="input-mini" ng-model="newMatch.result.team1" required /> : 
       <input type="number" min="0" max="5" class="input-mini" ng-model="newMatch.result.team2" required />
       Team Rot<br/>
+      <br>
       <button type="submit" class="btn btn-primary" ng-click="addMatch(newMatch)" ng-disabled="matchForm.$invalid">Spiel eintragen</button>
     </fieldset>
   </form>
